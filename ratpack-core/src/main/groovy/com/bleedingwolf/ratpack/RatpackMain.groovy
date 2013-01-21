@@ -29,6 +29,7 @@ class RatpackMain {
     }
 
     new RatpackAppFactory().create(configFile.canonicalFile).start()
+    Thread.sleep(Long.MAX_VALUE) // This is needed on the vertx branch
   }
 
 }

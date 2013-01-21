@@ -6,6 +6,35 @@ This project is the core Ratpack code. It is of interest to developers wanting t
 
 If you just want to use Ratpack to build a small, Groovy-based web app, then you want the [Ratpack Template](https://github.com/tlberglund/ratpack-template). Go clone that, write your code, and come on back here when you want to hack on the framework.
 
+## Running With Groovy
+
+Put some route definitions in `ratpack.groovy` (in any empty directory), e.g.
+
+    get("/") {
+        renderString  "Hello World"
+    }
+
+and then run this program (after `gradle install` in the root of the ratpack directory)
+
+    #!/usr/bin/env groovy
+
+    @Grab("com.augusttechgroup:ratpack-core:0.7.0-SNAPSHOT")
+    @Grab("javax.servlet:javax.servlet-api:3.0.1")
+    @GrabExclude("org.eclipse.jetty.orbit:javax.servlet:3.0.0.v201112011016")
+    import com.bleedingwolf.ratpack.RatpackMain
+    RatpackMain.main()
+
+This program will pick up route definitions in "ratpack.groovy":
+
+## Running with Gradle Plugin
+
+Ratpack can also be run as a gradle task using the plugin.  There is a
+test project with `ratpack.groovy` in a sub directory.  To test the
+plugin (from the root directory):
+
+    $ gradle -DincTestProject=true :ratpack-gradle-plugin-test:run
+    
+Then (in a browser) visit http://localhost:5050.
 
 ## Release Notes
 
